@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Scientific Number Scanner</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      margin-top: 100px;
+      background: #f4f4f4;
+    }
+    input {
+      padding: 10px;
+      width: 250px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Scientific Number Scanner</h2>
+
+  <input type="text" id="inputNumber" placeholder="Contoh: 2 x 10^0">
+  <button onclick="checkScientific()">Check</button>
+
+  <div id="result"></div>
+
+  <script>
+    function checkScientific() {
+      let input = document.getElementById("inputNumber").value.trim();
+
+      // Regex untuk scientific notation:
+      // contoh valid:
+      // 2 x 10^0
+      // 3.5 × 10^8
+      // 2e10
+      let regex = /^-?\d+(\.\d+)?\s*(x|×)\s*10\^[-+]?\d+$|^-?\d+(\.\d+)?e[-+]?\d+$/i;
+
+      if (regex.test(input)) {
+        document.getElementById("result").innerText = "Yes, it is scientific number";
+        document.getElementById("result").style.color = "green";
+      } else {
+        document.getElementById("result").innerText = "No, it is not scientific number";
+        document.getElementById("result").style.color = "red";
+      }
+    }
+  </script>
+
+</body>
+</html>

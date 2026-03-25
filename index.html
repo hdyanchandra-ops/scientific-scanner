@@ -5,47 +5,74 @@
   <title>Scientific Number Scanner</title>
   <style>
     body {
-      font-family: Arial;
-      text-align: center;
-      margin-top: 100px;
-      background: #f4f4f4;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #667eea, #764ba2);
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
+
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      width: 300px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
     input {
       padding: 10px;
-      width: 250px;
+      width: 90%;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
       font-size: 16px;
     }
+
     button {
       padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #667eea;
+      color: white;
       font-size: 16px;
-      margin-left: 10px;
       cursor: pointer;
     }
+
+    button:hover {
+      background: #5a67d8;
+    }
+
     #result {
-      margin-top: 20px;
-      font-size: 20px;
+      margin-top: 15px;
       font-weight: bold;
+      font-size: 18px;
     }
   </style>
 </head>
 <body>
 
-  <h2>Scientific Number Scanner</h2>
+  <div class="container">
+    <h2>Scientific Number Scanner</h2>
 
-  <input type="text" id="inputNumber" placeholder="Contoh: 2 x 10^0">
-  <button onclick="checkScientific()">Check</button>
+    <input type="text" id="inputNumber" placeholder="Contoh: 2 x 10^0">
+    <br>
+    <button onclick="checkScientific()">Check</button>
 
-  <div id="result"></div>
+    <div id="result"></div>
+  </div>
 
   <script>
     function checkScientific() {
       let input = document.getElementById("inputNumber").value.trim();
 
-      // Regex untuk scientific notation:
-      // contoh valid:
-      // 2 x 10^0
-      // 3.5 × 10^8
-      // 2e10
       let regex = /^-?\d+(\.\d+)?\s*(x|×)\s*10\^[-+]?\d+$|^-?\d+(\.\d+)?e[-+]?\d+$/i;
 
       if (regex.test(input)) {
